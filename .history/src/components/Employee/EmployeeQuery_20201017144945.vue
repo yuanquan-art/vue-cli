@@ -46,7 +46,7 @@
           >
           </el-option>
         </el-select>
-        <el-button @click="searchEmpolyee">搜索</el-button>
+        <el-button>搜索</el-button>
         <el-button>删除</el-button>
       </el-row>
     </el-card>
@@ -81,6 +81,17 @@
         </el-table-column>
         <el-table-column label="操作" width="50"> </el-table-column>
       </el-table>
+      <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="userInfo.pagenum"
+        :page-sizes="[1, 2, 5, 10]"
+        :page-size="userInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="3"
+      >
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -91,23 +102,23 @@ export default {
     return {
       options: [
         {
-          value: "1",
+          value: "选项1",
           label: "黄金糕",
         },
         {
-          value: "2",
+          value: "选项2",
           label: "双皮奶",
         },
         {
-          value: "3",
+          value: "选项3",
           label: "蚵仔煎",
         },
         {
-          value: "4",
+          value: "选项4",
           label: "龙须面",
         },
         {
-          value: "5",
+          value: "选项5",
           label: "北京烤鸭",
         },
       ],
@@ -191,10 +202,16 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    async searchEmpolyee(){
-      const {data: res} = await this.$http.post('/api/employee/queryByCondition',{})
-      console.log (res)
-    }
+    // 监听pagesize的变化
+    handleSizeChange(newSize) {
+      this.userInfo.pagesize = newSize;
+      this.getUserList();
+    },
+    // 监听页码值的变化
+    handleCurrentChange(newPage) {
+      this.userInfo.pagenum = newPage;
+      this.getUserList();
+    },
   },
 };
 </script>

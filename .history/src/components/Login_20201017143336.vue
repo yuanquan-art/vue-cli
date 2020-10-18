@@ -125,11 +125,9 @@ export default {
      border: 1px solid #ccc;
      box-shadow: 0 0 10px #ddd;
      img {
-         width: 120px;
-         width: 120px;
+         width: 100px;
+         width: 100px;
          border-radius: 50%;
-         margin-left: -10px;
-         margin-top: -8px;
      }
  }
  .btns {

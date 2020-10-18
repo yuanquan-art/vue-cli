@@ -7,7 +7,6 @@
         <img src="../assets/images/icon.png" alt="" />
         <span>CSI员工之家系统</span>
         <span class="user">张三</span>
-        <span class="editPassword">修改密码</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
@@ -241,14 +240,9 @@ export default {
     span {
       padding-left: 10px;
     }
-    .user {
+    .user{
       position: absolute;
       left: 47%;
-    }
-    .editPassword {
-      position: absolute;
-      left: 85%;
-      font-size: 20px;
     }
   }
 }

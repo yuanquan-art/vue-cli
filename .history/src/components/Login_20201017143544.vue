@@ -129,7 +129,6 @@ export default {
          width: 120px;
          border-radius: 50%;
          margin-left: -10px;
-         margin-top: -8px;
      }
  }
  .btns {

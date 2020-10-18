@@ -25,13 +25,13 @@
         <div class="login_box">
             <!-- 头像区域 -->
            <div class="avatar_box">
-               <img src="../assets/images/cqupt.jpg" alt="">
+               <img src="../assets/images/icon.png" alt="">
            </div>
            <!-- 登录表单区域 -->
            <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
                <!-- 用户名 -->
-              <el-form-item prop="loginName">
-                 <el-input v-model="loginForm.loginName" prefix-icon="iconfont icon-user"></el-input>
+              <el-form-item prop="username">
+                 <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
               </el-form-item>
               <!-- 密码 -->
               <el-form-item prop="password">
@@ -60,7 +60,7 @@ export default {
             // 这是登录表单验证的规则对象
          loginFormRules: {
              // 验证用户名是否合法
-             loginName: [
+             username: [
               { required: true, message: '请输入登录名称', trigger: 'blur' },
               { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
             ],
@@ -125,11 +125,9 @@ export default {
      border: 1px solid #ccc;
      box-shadow: 0 0 10px #ddd;
      img {
-         width: 120px;
-         width: 120px;
+         width: 100px;
+         width: 100px;
          border-radius: 50%;
-         margin-left: -10px;
-         margin-top: -8px;
      }
  }
  .btns {

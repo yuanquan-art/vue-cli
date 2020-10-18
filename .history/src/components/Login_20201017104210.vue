@@ -1,37 +1,15 @@
 <template>
     <div class="login_container">
-      <vue-particles
-        id="particles-js"    	
-        color="#fff"
-        :particleOpacity="0.7"
-        :particlesNumber="60"
-        shapeType="circle"
-        :particleSize="4"
-        linesColor="#fff"
-        :linesWidth="1"
-        :lineLinked="true"
-        :lineOpacity="0.4"
-        :linesDistance="150"
-        :moveSpeed="2"
-        :hoverEffect="true"
-        hoverMode="grab"
-        :clickEffect="true"
-        clickMode="push"
-        class="lizi"  
-      >
- </vue-particles>
-
-
         <div class="login_box">
             <!-- 头像区域 -->
            <div class="avatar_box">
-               <img src="../assets/images/cqupt.jpg" alt="">
+               <img src="../assets/images/icon.png" alt="">
            </div>
            <!-- 登录表单区域 -->
            <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
                <!-- 用户名 -->
-              <el-form-item prop="loginName">
-                 <el-input v-model="loginForm.loginName" prefix-icon="iconfont icon-user"></el-input>
+              <el-form-item prop="username">
+                 <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
               </el-form-item>
               <!-- 密码 -->
               <el-form-item prop="password">
@@ -41,7 +19,7 @@
                   <!-- 登录 -->
                   <el-button type="primary" @click="login">登录</el-button>
                   <!-- 刷脸登录 -->
-                     <el-button type="info" @click="resetForm">重置</el-button>
+                  <el-button type="primary" @click="FaceLogin">刷脸登录</el-button>
               </el-form-item>
            </el-form>
         </div>
@@ -54,13 +32,13 @@ export default {
          return {
           // 这是登录表单的数据绑定对象
          loginForm: {
-                loginName: '',
+                username: '',
                 password: ''
             },
             // 这是登录表单验证的规则对象
          loginFormRules: {
              // 验证用户名是否合法
-             loginName: [
+             username: [
               { required: true, message: '请输入登录名称', trigger: 'blur' },
               { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
             ],
@@ -72,20 +50,21 @@ export default {
       }    
     },
     methods: {
-          //点击重置按钮，重置登录表单
-        resetForm () {
-          this.$refs.loginFormRef.resetFields();
+        //点击重置按钮，重置登录表单
+      FaceLogin () {
+          this.$router.push('/face')
         },
        async login () {
         // 表单预验证
-        this.$refs.loginFormRef.validate(async valid => {
-          if (!valid) return;
-       
-        const {data:res} =await this.$http.post('/api/user/login',this.loginForm
+        // this.$refs.loginFormRef.validate(async valid => {
+        //   if (!valid) return;
+        const res =await this.$http.post('/api/user/login',{
+                  "loginName":"test1",
+                  "password":"123456"  
+         }
           );
           console.log(res)
-          if (res.operationResult !== 'SUCCESS') return;
-        //    this.$message.error('登录失败');
+        //   if (res.meta.status !== 200) return this.$message.error('登录失败');
         //   this.$message.success('登录成功');
         //   // 1. 将登录成功之后的token,保存到客户端的sessionStorage 中
         //   //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
@@ -93,7 +72,7 @@ export default {
         //    window.sessionStorage.setItem('token',res.data.token);
           // 2.通过编程式导航跳转到后台主页，路由地址是 /home
           this.$router.push('/home')
-        });
+        // });
         }
     }
 }
@@ -125,11 +104,9 @@ export default {
      border: 1px solid #ccc;
      box-shadow: 0 0 10px #ddd;
      img {
-         width: 120px;
-         width: 120px;
+         width: 100px;
+         width: 100px;
          border-radius: 50%;
-         margin-left: -10px;
-         margin-top: -8px;
      }
  }
  .btns {

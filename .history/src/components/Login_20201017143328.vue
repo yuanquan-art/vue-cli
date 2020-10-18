@@ -25,7 +25,7 @@
         <div class="login_box">
             <!-- 头像区域 -->
            <div class="avatar_box">
-               <img src="../assets/images/cqupt.jpg" alt="">
+               <img src="../assets/images/cqupt.png" alt="">
            </div>
            <!-- 登录表单区域 -->
            <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
@@ -125,11 +125,9 @@ export default {
      border: 1px solid #ccc;
      box-shadow: 0 0 10px #ddd;
      img {
-         width: 120px;
-         width: 120px;
+         width: 100px;
+         width: 100px;
          border-radius: 50%;
-         margin-left: -10px;
-         margin-top: -8px;
      }
  }
  .btns {

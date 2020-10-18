@@ -3,7 +3,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://118.31.12.203:8080/csi_employee_home_webui',
+                target: 'http://f8e500042dcd.ngrok.io/csi_employee_home_webui',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {

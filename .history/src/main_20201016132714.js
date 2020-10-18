@@ -4,8 +4,6 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './assets/css/global.css'
-import VueParticles from 'vue-particles'  
-Vue.use(VueParticles) 
 
 import axios from 'axios'
 // 配置请求的根路径

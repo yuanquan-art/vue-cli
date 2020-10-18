@@ -9,7 +9,7 @@
     <el-card>
       <el-row>
         职位：
-        <el-select v-model="value" placeholder="请选择">
+        <el-select v-model="value" placeholder="请选择职位">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -46,7 +46,7 @@
           >
           </el-option>
         </el-select>
-        <el-button @click="searchEmpolyee">搜索</el-button>
+        <el-button>搜索</el-button>
         <el-button>删除</el-button>
       </el-row>
     </el-card>
@@ -81,6 +81,17 @@
         </el-table-column>
         <el-table-column label="操作" width="50"> </el-table-column>
       </el-table>
+      <!-- 分页 -->
+       <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="userInfo.pagenum"
+        :page-sizes="[1, 2, 5, 10]"
+        :page-size="userInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="3"
+      >
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -89,28 +100,22 @@
 export default {
   data() {
     return {
-      options: [
-        {
-          value: "1",
-          label: "黄金糕",
-        },
-        {
-          value: "2",
-          label: "双皮奶",
-        },
-        {
-          value: "3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "4",
-          label: "龙须面",
-        },
-        {
-          value: "5",
-          label: "北京烤鸭",
-        },
-      ],
+       options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
       optionsSex: [
         {
           value: "选项1",
@@ -156,7 +161,7 @@ export default {
           address: "重庆市南岸区",
           date: "2016-12-03",
         },
-        {
+       {
           name: "李四",
           sex: "男",
           phone: "1522369825",
@@ -174,8 +179,8 @@ export default {
       userInfo: {
         query: "",
         pagenum: 1,
-        pagesize: 2,
-      },
+        pagesize: 2
+      }
     };
   },
   methods: {
@@ -191,9 +196,15 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    async searchEmpolyee(){
-      const {data: res} = await this.$http.post('/api/employee/queryByCondition',{})
-      console.log (res)
+    // 监听pagesize的变化
+    handleSizeChange(newSize) {
+      this.userInfo.pagesize = newSize;
+      this.getUserList();
+    },
+    // 监听页码值的变化
+    handleCurrentChange(newPage) {
+      this.userInfo.pagenum = newPage;
+      this.getUserList();
     }
   },
 };
@@ -212,7 +223,7 @@ export default {
 .el-button {
   margin-left: 10px;
 }
-.el-pagination {
+.el-pagination{
   margin: 0 auto;
 }
 </style>

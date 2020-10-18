@@ -247,8 +247,7 @@ export default {
     }
     .editPassword {
       position: absolute;
-      left: 85%;
-      font-size: 20px;
+      left: 80%;
     }
   }
 }
