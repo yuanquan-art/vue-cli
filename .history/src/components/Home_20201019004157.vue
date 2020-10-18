@@ -81,7 +81,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editPasswordDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updatePassword"
+        <el-button type="primary" @click="editPasswordDialogVisible = false"
           >确 定</el-button
         >
       </span>
@@ -262,15 +262,6 @@ export default {
         })
         .catch((_) => {});
     },
-    // 提交表单修改密码
-    async updatePassword(){
-       console.log(this.passWord)
-       const { data: res } = await this.$http.post(
-        "/api/user/editPassword",
-         this.passWord
-	  );
-    console.log(res)
-    }
   },
 };
 </script>

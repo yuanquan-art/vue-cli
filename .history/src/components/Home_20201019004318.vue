@@ -263,13 +263,8 @@ export default {
         .catch((_) => {});
     },
     // 提交表单修改密码
-    async updatePassword(){
-       console.log(this.passWord)
-       const { data: res } = await this.$http.post(
-        "/api/user/editPassword",
-         this.passWord
-	  );
-    console.log(res)
+    updatePassword(){
+      
     }
   },
 };

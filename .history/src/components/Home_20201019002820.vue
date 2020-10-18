@@ -60,32 +60,6 @@
         <router-view></router-view>
       </el-main>
     </el-container>
-
-    <!-- 修改密码对话框 -->
-    <el-dialog
-      title="提示"
-      :visible.sync="editPasswordDialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
-      <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="原密码">
-          <el-input v-model=" passWord.oldPassword"></el-input>
-        </el-form-item>
-        <el-form-item label="新密码">
-          <el-input v-model=" passWord.newPassword"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码">
-          <el-input v-model="newPassword"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="editPasswordDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updatePassword"
-          >确 定</el-button
-        >
-      </span>
-    </el-dialog>
   </el-container>
 </template>
 
@@ -223,12 +197,6 @@ export default {
       isCollapse: false,
       // 被激活的链接
       activePath: "",
-      editPasswordDialogVisible: false,
-      passWord: {
-        oldPassword: "",
-        newPassword: "",
-      },
-      newPassword: ""
     };
   },
   created() {
@@ -251,26 +219,7 @@ export default {
       window.sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
     },
-    // 点击修改密码弹出对话框
-    editPassword() {
-      this.editPasswordDialogVisible = true;
-    },
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then((_) => {
-          done();
-        })
-        .catch((_) => {});
-    },
-    // 提交表单修改密码
-    async updatePassword(){
-       console.log(this.passWord)
-       const { data: res } = await this.$http.post(
-        "/api/user/editPassword",
-         this.passWord
-	  );
-    console.log(res)
-    }
+    // 点击修改密码跳转到
   },
 };
 </script>

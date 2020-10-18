@@ -75,13 +75,13 @@
         <el-form-item label="新密码">
           <el-input v-model=" passWord.newPassword"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码">
-          <el-input v-model="newPassword"></el-input>
+        <el-form-item label="新密码">
+          <el-input v-model="form.name" newPassword></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editPasswordDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updatePassword"
+        <el-button type="primary" @click="editPasswordDialogVisible = false"
           >确 定</el-button
         >
       </span>
@@ -262,15 +262,6 @@ export default {
         })
         .catch((_) => {});
     },
-    // 提交表单修改密码
-    async updatePassword(){
-       console.log(this.passWord)
-       const { data: res } = await this.$http.post(
-        "/api/user/editPassword",
-         this.passWord
-	  );
-    console.log(res)
-    }
   },
 };
 </script>
